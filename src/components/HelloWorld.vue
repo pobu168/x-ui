@@ -2,8 +2,15 @@
 import { ref, onMounted } from 'vue'
 import { taskManInfo, movie } from '../server/request'
 import axios from 'axios'
-const count = ref(0)
-
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+// 语言切换
+const changeLang = (lang: string) => {
+  // 切换语言 值要对应上面index中导出的名字  要一致  第四步
+  locale.value = lang
+  // 缓存到localStorage中下次进来还是切换后的语言  如果不需要可以删除下面代码
+  localStorage.setItem('lang', lang)
+}
 onMounted(async () => {
   const yy = await taskManInfo()
   console.log(yy)
@@ -19,6 +26,9 @@ onMounted(async () => {
 </script>
 
 <template>
+  <div>
+    {{$t('lang')}}
+  </div>
 </template>
 
 <style scoped>
