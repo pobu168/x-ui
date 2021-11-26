@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import {
+  GlobalOutlined
+} from '@ant-design/icons-vue';
 import { taskManInfo, movie } from '../server/request'
 import axios from 'axios'
 import { useI18n } from 'vue-i18n'
@@ -26,8 +29,22 @@ onMounted(async () => {
 </script>
 
 <template>
-  <a-button type="link">Link Button</a-button>
-  <div>{{$t('lang')}}</div>
+  <a-dropdown>
+    <a class="ant-dropdown-link" @click.prevent>
+      <GlobalOutlined />
+      {{$t('lang')}}
+    </a>
+    <template #overlay>
+      <a-menu>
+        <a-menu-item>
+          <a href="javascript:;" @click="changeLang('cn')">中文</a>
+        </a-menu-item>
+        <a-menu-item>
+          <a href="javascript:;" @click="changeLang('en')">English</a>
+        </a-menu-item>
+      </a-menu>
+    </template>
+  </a-dropdown>
 </template>
 
 <style scoped>
