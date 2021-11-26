@@ -1,29 +1,21 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { taskManInfo, movie } from '../server/request'
 import axios from 'axios'
 const count = ref(0)
 
 onMounted(async () => {
-  // await getFissionCourseList().then((res: any) => {
-  //   console.log(res);
-  // });
-    axios({
-      method: 'post',
-      url: '/taskman/entities/request/query',
-      params: {
-      },
-    }).then(res => {
-      console.log(res);
-    });
-    axios({
-      method: 'get',
-      url: '/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=50&page_start=0',
-      params: {
-      },
-    }).then(res => {
-      console.log(res);
-    });
-  });
+  const yy = await taskManInfo()
+  console.log(yy)
+  const params = {
+    params: {
+      search: '.',
+      search_type: 'endpoint'
+    }
+  }
+  const xx = await movie(params)
+  console.log(xx)
+});
 </script>
 
 <template>
