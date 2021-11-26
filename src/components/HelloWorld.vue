@@ -26,9 +26,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    {{$t('lang')}}
-  </div>
+  <a-button type="link">Link Button</a-button>
+  <div>{{$t('lang')}}</div>
 </template>
 
 <style scoped>
