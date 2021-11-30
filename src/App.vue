@@ -1,12 +1,12 @@
 <template>
-  <a-menu v-model:selectedKeys="current" mode="horizontal" theme="dark">
-    <a-menu-item key="mail">
+  <a-menu v-model:selectedKeys="current" @click="changeMenu" mode="horizontal" theme="dark">
+    <a-menu-item key="/">
       首页
     </a-menu-item>
     <a-sub-menu>
       <template #title>子菜单</template>
-      <a-menu-item> 子菜单1 </a-menu-item>
-      <a-menu-item> 子菜单2 </a-menu-item>
+      <a-menu-item key="/page1"> 子菜单1 </a-menu-item>
+      <a-menu-item key="/page2"> 子菜单2 </a-menu-item>
     </a-sub-menu>
   </a-menu>
   <div class="lang-zone">
@@ -27,13 +27,15 @@
       </template>
     </a-dropdown>
   </div>
+  <router-view></router-view>
   <!-- <HelloWorld/> -->
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { GlobalOutlined } from '@ant-design/icons-vue';
+  import { router } from './router';
   import HelloWorld from './components/HelloWorld.vue'
-  const current = ref<string[]>(['']);
+  let current = ref<string[]>(['']);
   import { useI18n } from 'vue-i18n'
   const { locale } = useI18n()
   // 语言切换
@@ -42,6 +44,9 @@
     locale.value = lang
     // 缓存到localStorage中下次进来还是切换后的语言  如果不需要可以删除下面代码
     localStorage.setItem('lang', lang)
+  }
+  const changeMenu = (item: {key: ''}) => {
+    router.push({path: item.key})
   }
 </script>
 <style>
