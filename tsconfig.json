@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "esnext", // 指定编译代码的目标， ES3-2020
     "useDefineForClassFields": true,
-    "module": "esnext",
+    "module": "esnext", // 模块系统，CommonJS/ES6
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "preserve", // 控制jsx文件转为js的输出方式，只影响.tsx文件
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
