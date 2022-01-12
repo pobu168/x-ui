@@ -1,12 +1,12 @@
 <template>
   <a-menu v-model:selectedKeys="current" @click="changeMenu" mode="horizontal" theme="dark">
     <a-menu-item key="/">
-      首页
+      {{$t('portal')}}
     </a-menu-item>
     <a-sub-menu>
-      <template #title>子菜单</template>
-      <a-menu-item key="/page1"> 子菜单1 </a-menu-item>
-      <a-menu-item key="/page2"> 子菜单2 </a-menu-item>
+      <template #title>{{$t('menu')}}</template>
+      <a-menu-item key="/page1"> {{$t('menu1')}} </a-menu-item>
+      <a-menu-item key="/page2"> {{$t('menu2')}} </a-menu-item>
     </a-sub-menu>
   </a-menu>
   <div class="lang-zone">
@@ -28,7 +28,7 @@
     </a-dropdown>
   </div>
   <router-view></router-view>
-  <!-- <HelloWorld/> -->
+  <HelloWorld/>
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
