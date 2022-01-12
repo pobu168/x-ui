@@ -9,5 +9,5 @@ const get = (url: string, params = {}) => http.get(
 )
 
 // 接口说明
-export const taskManInfo = () => post('/taskman/entities/request/query')
-export const movie = (params: {} | undefined) => get('/capacity/api/v1/monitor/search', params)
+export const taskManInfo = () => post('http://106.52.160.142:19090/taskman/entities/request/query')
+export const movie = (params: {} | undefined) => get('http://106.52.160.142:39096/capacity/api/v1/monitor/search', params)
