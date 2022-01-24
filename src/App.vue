@@ -1,5 +1,5 @@
 <template>
-  <a-menu v-model:selectedKeys="current" @click="changeMenu" mode="horizontal" theme="dark">
+  <a-menu v-model:selectedKeys="current" @click="changeMenu" mode="horizontal">
     <a-menu-item key="/">
       {{$t('portal')}}
     </a-menu-item>
@@ -28,8 +28,9 @@
       </template>
     </a-dropdown>
   </div>
-  <router-view></router-view>
-  <!-- <HelloWorld/> -->
+  <div style="padding: 10px 20px">
+    <router-view></router-view>
+  </div>
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';

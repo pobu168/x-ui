@@ -6,6 +6,11 @@ const en = {
   menu2: 'Menu2',
   tableDemo: 'Table',
   id: 'ID',
-  displayName: 'Display Name'
+  displayName: 'Display Name',
+  btnSearch: "Search",
+  btnAdd: "Add",
+  btnEdit: "Edit",
+  btnDisable: "Disable",
+  btnEnable: "Enable"
 }
 export default en
