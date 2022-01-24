@@ -7,6 +7,7 @@
       <template #title>{{$t('menu')}}</template>
       <a-menu-item key="/page1"> {{$t('menu1')}} </a-menu-item>
       <a-menu-item key="/page2"> {{$t('menu2')}} </a-menu-item>
+      <a-menu-item key="/tableDemo"> {{$t('tableDemo')}} </a-menu-item>
     </a-sub-menu>
   </a-menu>
   <div class="lang-zone">
@@ -28,13 +29,13 @@
     </a-dropdown>
   </div>
   <router-view></router-view>
-  <HelloWorld/>
+  <!-- <HelloWorld/> -->
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { GlobalOutlined } from '@ant-design/icons-vue';
   import { router } from './router';
-  import HelloWorld from './components/HelloWorld.vue'
+  // import HelloWorld from './components/HelloWorld.vue'
   let current = ref<string[]>(['']);
   import { useI18n } from 'vue-i18n'
   const { locale } = useI18n()
@@ -44,6 +45,9 @@
     locale.value = lang
     // 缓存到localStorage中下次进来还是切换后的语言  如果不需要可以删除下面代码
     localStorage.setItem('lang', lang)
+    console.log(window)
+    console.log(location)
+    location.reload()
   }
   const changeMenu = (item: {key: ''}) => {
     router.push({path: item.key})
@@ -54,7 +58,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
 }
 .lang-zone {
