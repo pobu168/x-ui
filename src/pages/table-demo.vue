@@ -10,13 +10,13 @@
       <a-button type="primary" ghost>{{$t('btnAdd')}}</a-button>
     </div>
     <div class="con-item">
-      <a-button type="primary" ghost>{{$t('btnEdit')}}</a-button>
+      <a-button type="primary" ghost :disabled="btnState.edit">{{$t('btnEdit')}}</a-button>
     </div>
     <div class="con-item">
-      <a-button type="primary" ghost>{{$t('btnEnable')}}</a-button>
+      <a-button type="primary" ghost :disabled="btnState.enable">{{$t('btnEnable')}}</a-button>
     </div>
     <div class="con-item">
-      <a-button type="primary" ghost>{{$t('btnDisable')}}</a-button>
+      <a-button type="primary" ghost :disabled="btnState.disable">{{$t('btnDisable')}}</a-button>
     </div>
   </div>
   <a-table
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive, onMounted, computed } from 'vue'
+  import { ref, reactive, onMounted, computed, watch } from 'vue'
   import { taskManInfo } from '../server/request'
   import { useI18n } from 'vue-i18n'
   const { t } = useI18n()
@@ -105,9 +105,26 @@
     });
     const hasSelected = computed(() => state.selectedRowKeys.length > 0);
     const onSelectChange = (selectedRowKeys: Key[]) => {
-      console.log('selectedRowKeys changed: ', selectedRowKeys);
+      // console.log('selectedRowKeys changed: ', selectedRowKeys);
       state.selectedRowKeys = selectedRowKeys;
     };
+    let btnState = reactive({ edit: true, enable: true, disable: true })
+    watch(
+      () => state.selectedRowKeys,
+      (count) => {
+        if (count.length === 0) {
+          btnState.edit = true
+          btnState.enable = true
+          btnState.disable = true
+          return
+        }
+        btnState.edit = false
+        const selectedRow = dataSource.data.filter(d => count.includes(d.id))
+        const findEnableRow = selectedRow.every(r => r.state !== 'enable')
+        btnState.enable = !findEnableRow
+        btnState.disable = !selectedRow.every(r => r.state !== 'disable')
+      }
+    )
 </script>
 
 <style scoped lang="scss">
