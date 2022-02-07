@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { message } from 'ant-design-vue'
 
 // 创建axios
 export const service = axios.create({
@@ -17,6 +18,10 @@ service.interceptors.request.use((config) => new Promise((resolve) => {
 
 // 添加响应拦截器
 service.interceptors.response.use((response) => {
+  console.log(response)
+  if (response.data.errorCode === 1) {
+    message.error(response.data.errorMessage)
+  }
   // 对响应数据做点什么
   return {
     ...response.data

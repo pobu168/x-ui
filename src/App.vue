@@ -1,5 +1,5 @@
 <template>
-  <a-menu v-model:selectedKeys="current" @click="changeMenu" mode="horizontal">
+  <a-menu v-model:selectedKeys="current" @click="changeMenu" mode="horizontal" theme="dark">
     <a-menu-item key="/">
       {{$t('portal')}}
     </a-menu-item>

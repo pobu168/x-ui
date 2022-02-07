@@ -1,31 +1,45 @@
-<script setup lang="ts">
-import { reactive, onMounted } from 'vue'
-import { taskManInfo, movie } from '../server/request'
-let res = reactive({data: []})
-onMounted(async () => {
-  type YY = {
-    status: any,
-    data: any
-  }
-  const {status, data}:YY = await taskManInfo()
-  if (status === 'OK') {
-    res.data = data
-    console.log(data)
-  }
-  // console.log(status, data)
-  // const params = {
-  //   params: {
-  //     search: '.',
-  //     search_type: 'endpoint'
-  //   }
-  // }
-  // const xx = await movie(params)
-  // console.log(xx)
+<template>
+  <a-table :columns="columns" :data-source="data" :scroll="{ x: 1500 }">
+  </a-table>
+</template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const columns = [
+      {
+        title: 'Column 7',
+        dataIndex: 'address',
+        key: '7',
+        width: 150,
+      },
+      { title: 'Column 8', dataIndex: 'address', key: '8' },
+    ]
+
+    const data = [];
+    for (let i = 0; i < 100; i++) {
+      data.push({
+        key: i,
+        name: `Edrward ${i}`,
+        age: 32,
+        address: `London Park no. ${i}`,
+      });
+    }
+    return {
+      data,
+      columns,
+    };
+  },
 });
 </script>
-
-<template>
-  <div>
-    page1 - {{res}}
-  </div>
-</template>
+<style>
+#components-table-demo-summary tfoot th,
+#components-table-demo-summary tfoot td {
+  background: #fafafa;
+}
+[data-theme='dark'] #components-table-demo-summary tfoot th,
+[data-theme='dark'] #components-table-demo-summary tfoot td {
+  background: #1d1d1d;
+}
+</style>

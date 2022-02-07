@@ -5,9 +5,6 @@ const en = {
   menu1: 'Menu1',
   menu2: 'Menu2',
   tableDemo: 'Table',
-  tag: 'Tag',
-  id: 'ID',
-  displayName: 'Display Name',
   btnSearch: "Search",
   btnAdd: "Add",
   btnEdit: "Edit",
@@ -17,6 +14,14 @@ const en = {
   btnUpload: "Upload",
   btnDownload: "Download",
   btnConfirm: 'Comfirm',
-  btnCancel: 'Cancel'
+  btnCancel: 'Cancel',
+  deleteTip: 'Do you want to delete these items?',
+  tag: 'Tag',
+  id: 'ID',
+  displayName: 'Display Name',
+  description: 'Description',
+  status: 'Status',
+  version: 'Version',
+  userCount: 'User Count'
 }
 export default en
